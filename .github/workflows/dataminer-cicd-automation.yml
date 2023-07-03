@@ -21,7 +21,7 @@ jobs:
       referenceType: ${{ github.ref_type }}
       repository: ${{ github.repository }}
       owner: ${{ github.repository_owner }}
-      sonarCloudProjectName: BandaruDM_dm_as_test_1
+      sonarCloudProjectName: BandaruDM_Protocol
     secrets:
       # The API-key: generated in the DCP Admin app (https://admin.dataminer.services/) as authentication for a certain DataMiner System.
       api-key: ${{ secrets.DATAMINER_LAKSHMI_DEMO }}
@@ -54,7 +54,7 @@ jobs:
           # The API-key: generated in the DCP Admin app (https://admin.dataminer.services/) as authentication for a certain DataMiner System.
           api-key: ${{ secrets.DATAMINER_LAKSHMI_DEMO }}
           # solution-path: ./${{ steps.findSlnFile.outputs.solutionFilePath }}
-          solution-path: ./AutomationScript.sln
+          solution-path: ./Protocol.sln
           # Id of the uploaded artifact
           # artifact-id: ${{ needs.CI.outputs.artifact-id }}
           artifact-name: ${{ github.repository }} ${{ github.ref_name }}
