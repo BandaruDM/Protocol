@@ -27,35 +27,35 @@ jobs:
       api-key: ${{ secrets.DATAMINER_LAKSHMI_DEMO }}
       sonarCloudToken: ${{ secrets.SONAR_TOKEN }}
       
-  LOG:
+  CD:
     environment: production
-    name: LOG
+    name: CD
     runs-on: ubuntu-latest
     needs: CI
     steps:
       - name: Post Actions
         run: echo  ArtifactId ${{ needs.CI.outputs.artifact-id }}
     
-  CD:
-    if: github.ref_type == 'tag'
-    environment: production
-    name: CD
-    runs-on: ubuntu-latest
-    needs: CI
+#  CD:
+#    if: github.ref_type == 'tag'
+#    environment: production
+#    name: CD
+#    runs-on: ubuntu-latest
+#    needs: CI
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Skyline DataMiner Deploy Action
-        id: findSlnFile 
-        uses: SkylineCommunications/Skyline-DataMiner-Deploy-Action@v1
-        with:
-          # Stage deploy
-          stage: All
-          # The API-key: generated in the DCP Admin app (https://admin.dataminer.services/) as authentication for a certain DataMiner System.
-          api-key: ${{ secrets.DATAMINER_LAKSHMI_DEMO }}
-          # solution-path: ./${{ steps.findSlnFile.outputs.solutionFilePath }}
-          solution-path: ./Protocol.sln
-          # Id of the uploaded artifact
-          # artifact-id: ${{ needs.CI.outputs.artifact-id }}
-          artifact-name: ${{ github.repository }} ${{ github.ref_name }}
-          version: ${{ github.ref_name }}
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Skyline DataMiner Deploy Action
+#        id: findSlnFile 
+#        uses: SkylineCommunications/Skyline-DataMiner-Deploy-Action@v1
+#        with:
+#          # Stage deploy
+#          stage: All
+#          # The API-key: generated in the DCP Admin app (https://admin.dataminer.services/) as authentication for a certain DataMiner System.
+#          api-key: ${{ secrets.DATAMINER_LAKSHMI_DEMO }}
+#          # solution-path: ./${{ steps.findSlnFile.outputs.solutionFilePath }}
+#          solution-path: ./Protocol.sln
+#          # Id of the uploaded artifact
+#          # artifact-id: ${{ needs.CI.outputs.artifact-id }}
+#          artifact-name: ${{ github.repository }} ${{ github.ref_name }}
+#          version: ${{ github.ref_name }}
